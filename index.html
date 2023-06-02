@@ -96,28 +96,44 @@
         }
 
         .moving-element {
-      position: absolute;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      /* align-items: end; */
+            position: absolute;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            /* align-items: end; */
 
-      height: 1px;
-      width: 100%;
-      top: 0;
-      /* left: 100%; */
-      /* transform: translateX(-50%); */
-      background-color: #ff0000;
-      color: #ffffff;
-      font-size: 12px;
-      z-index: 9999;
-    }
-    #current-time {
-        margin: auto;
-        width: auto;
-        display: flex;
-        align-items: flex-end;
-        padding: 0px 10px;
-    }
+            height: 1px;
+            width: 100%;
+            top: 0;
+            /* left: 100%; */
+            /* transform: translateX(-50%); */
+            background-color: #ff0000;
+            color: #ffffff;
+            font-size: 12px;
+            z-index: 9999;
+        }
+
+        #current-time {
+            margin: auto;
+            width: auto;
+            display: flex;
+            align-items: flex-end;
+            padding: 0px 10px;
+        }
+
+            .lottie {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                
+            border-radius: 10px;
+            background: url(noise.webp), #333646;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            
+   box-shadow: 0px 20px 75px rgba(0, 0, 0, 0.2);
+            
+            
+            background-blend-mode: overlay, normal;
+            }
     </style>
 </head>
 
@@ -126,7 +142,7 @@
     <div class="moving-element" id="moving-element">
         <p></p>
         <p id="current-time"></p>
-      </div>
+    </div>
 
     <div class="grid">
         <div class="grid-item">
@@ -193,29 +209,37 @@
         </div>
     </div>
 
+    <div class="textura2 lottie">
+        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ko9ahj1s.json" background="transparent"
+            speed="1" style="width: 100%; height: 50px;" loop autoplay></lottie-player>
+    </div>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script>
-    const movingElement = document.getElementById('moving-element');
-    const currentTimeElement = document.getElementById('current-time');
 
-    const totalMinutes = 24 * 60 + 59; // Total de minutos desde 00:00 hasta 24:59
 
-    function updatePosition() {
-      const date = new Date();
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
-      const seconds = date.getSeconds();
-      const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        const movingElement = document.getElementById('moving-element');
+        const currentTimeElement = document.getElementById('current-time');
 
-      const screenHeight = window.innerHeight;
-      const newPosition = (totalSeconds / (totalMinutes * 60)) * screenHeight;
+        const totalMinutes = 24 * 60 + 59; // Total de minutos desde 00:00 hasta 24:59
 
-      movingElement.style.top = `${newPosition}px`;
+        function updatePosition() {
+            const date = new Date();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+            const totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
-      const currentTimeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      currentTimeElement.textContent = currentTimeString;
-    }
+            const screenHeight = window.innerHeight;
+            const newPosition = (totalSeconds / (totalMinutes * 60)) * screenHeight;
 
-    setInterval(updatePosition, 1000); // Actualiza cada segundo
+            movingElement.style.top = `${newPosition}px`;
+
+            const currentTimeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            currentTimeElement.textContent = currentTimeString;
+        }
+
+        setInterval(updatePosition, 1000); // Actualiza cada segundo
 
     </script>
 
