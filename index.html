@@ -44,7 +44,7 @@
             grid-template-rows:
                 4fr
                 /* work */
-                1fr
+                8fr
                 /* sueño */
                 1fr
                 /* almuerzo */
@@ -94,11 +94,39 @@
         .auto {
             margin: auto;
         }
+
+        .moving-element {
+      position: absolute;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      /* align-items: end; */
+
+      height: 1px;
+      width: 100%;
+      top: 0;
+      /* left: 100%; */
+      /* transform: translateX(-50%); */
+      background-color: #ff0000;
+      color: #ffffff;
+      font-size: 12px;
+      z-index: 9999;
+    }
+    #current-time {
+        margin: auto;
+        width: auto;
+        display: flex;
+        align-items: flex-end;
+        padding: 0px 10px;
+    }
     </style>
 </head>
 
 <body>
 
+    <div class="moving-element" id="moving-element">
+        <p></p>
+        <p id="current-time"></p>
+      </div>
 
     <div class="grid">
         <div class="grid-item">
@@ -164,6 +192,32 @@
             <p>[1] Estudio</p>
         </div>
     </div>
+
+    <script>
+    const movingElement = document.getElementById('moving-element');
+    const currentTimeElement = document.getElementById('current-time');
+
+    const totalMinutes = 24 * 60 + 59; // Total de minutos desde 00:00 hasta 24:59
+
+    function updatePosition() {
+      const date = new Date();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+      const screenHeight = window.innerHeight;
+      const newPosition = (totalSeconds / (totalMinutes * 60)) * screenHeight;
+
+      movingElement.style.top = `${newPosition}px`;
+
+      const currentTimeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      currentTimeElement.textContent = currentTimeString;
+    }
+
+    setInterval(updatePosition, 1000); // Actualiza cada segundo
+
+    </script>
 
 
 
