@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+{
+  /* Fuentes
+  300 / 400 / 500 / 600 / 700
+*/
+}
+
+
+:root {
+  --color1: #f2f6fa;
+  --color2: rgba(191, 193, 201, 1);
+  --color3: rgba(191, 193, 201, 0.2);
+  --colorLineas: rgba(141, 153, 174, 0.1);
+  --font1: 'Space Grotesk', sans-serif;
+  --font2: 'Open Sans', sans-serif;
+  --maxWidth: 80ch;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: url(/src/assets/noise.webp), #15161d;
+    background-blend-mode: overlay, normal;
+    font-family: var(--font1);
+    color: var(--color2);
+}
+
+.grid {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    gap: 1px;
+
+    /* padding: 5px; */
+    grid-auto-rows: 1fr;
+    grid-template-rows: 
+    4fr /* work */
+    1fr /* sueño */
+    1fr /* almuerzo */
+    4fr /* work */
+    1fr/* estudio */
+    1fr /* gym */
+    1fr /* comida */
+    3fr /* ocio */
+    1fr /* estudio */
+    ;
+    grid-template-columns: 1fr 4fr;
+}
+
+.grid-item {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    background: url(/src/assets/noise.webp), #1f212b;
+    background-blend-mode: overlay, normal;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+p {
+    margin: auto auto auto 20px;
+}
+
+.red {
+    background: url(/src/assets/noise.webp), #311c1c;
+    background-blend-mode: overlay, normal;
+} .none {
+    background: none;
+    color: var(--color3);
+
+} .auto {
+    margin: auto;
+}
